@@ -2,6 +2,8 @@ package com.Quora.Quora.Models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +20,17 @@ public class Answer extends BaseModel{
     @Column(nullable = false)
     private String text;
 
-    @ManyToOne
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected User answerUser;
 
-    @ManyToOne()
-    private Question questions;
 
-    @OneToMany(mappedBy = "answer")
-    private List<Comment> comments;
+    @ManyToOne(fetch = FetchType.LAZY)
+    Question questions;
 
+
+    @OneToMany(mappedBy = "commentedAnswer",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    List<Comment> comments;
 
 
 

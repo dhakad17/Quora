@@ -18,6 +18,6 @@ public class Topic extends BaseModel{
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "topics")
+   @ManyToMany(mappedBy = "topics")
     private List<Question> questions;
 }

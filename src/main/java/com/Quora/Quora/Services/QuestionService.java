@@ -18,11 +18,10 @@ public class QuestionService {
 
     public Question createQuestion(Question question)
     {
+        System.out.println("-------------------------------------------===");
+        System.out.println(question.getBody());
         return this.questionRepository.save(question);
     }
 
-    public List<Question> searchQuestion(String title,String topic)
-    {
-        return this.questionRepository.findByTopicNameAndTitle(title,topic);
-    }
+
 }

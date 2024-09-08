@@ -1,9 +1,6 @@
 package com.Quora.Quora.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -21,12 +18,12 @@ public class Comment extends BaseModel{
     private String text;
 
     @ManyToOne()
-    private User user;
+    protected Answer commentedAnswer;
 
     @ManyToOne()
-    private Answer answer;
+    protected User commentUser;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     private Comment parentComment;
 
     @OneToMany(mappedBy = "parentComment")

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +27,16 @@ public class User extends BaseModel{
 
     private String bio;
 
-    @OneToMany(mappedBy = "user")
-    private List<Question> questions;
+    @OneToMany(mappedBy = "questionUser",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    List<Question> questions;
 
-    @OneToMany(mappedBy = "user")
-    private List<Answer> answers;
+    @OneToMany(mappedBy = "answerUser",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    List<Answer> answers;
 
-    @OneToMany(mappedBy = "user")
-    private List<Comment> comments;
+    @OneToMany(mappedBy = "commentUser",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    List<Comment> comments;
 
 }
