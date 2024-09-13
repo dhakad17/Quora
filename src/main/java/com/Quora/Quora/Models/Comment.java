@@ -23,10 +23,10 @@ public class Comment extends BaseModel{
     @ManyToOne()
     protected User commentUser;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private Comment parentComment;
 
-    @OneToMany(mappedBy = "parentComment")
+    @OneToMany(mappedBy = "parentComment",cascade = CascadeType.ALL)
     private List<Comment> comments;
 
 

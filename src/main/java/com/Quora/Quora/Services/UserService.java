@@ -26,11 +26,22 @@ public class UserService {
      {
         return this.userRepository.save(user);
      }
+     public boolean checkUser(UUID uuid)
+     {
+         var user=this.userRepository.findById(uuid);
+
+         return user.isEmpty();
+     }
 
      //getting user
      public User getUser(UUID uuid)
      {
          return this.userRepository.findById(uuid).orElseThrow(()-> new RuntimeException("User not found"));
+     }
+
+     public User getUserByEmail(String email)
+     {
+         return this.userRepository.findByEmail(email);
      }
 
      // updating user

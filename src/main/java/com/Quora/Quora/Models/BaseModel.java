@@ -19,17 +19,17 @@ public  abstract class BaseModel {
     @Id
     @GeneratedValue(generator = "uuid2")
     @Column(name = "Id", columnDefinition = "BINARY(16)")
-    private UUID uuid;
+    protected UUID uuid;
 
 
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreatedDate
     @Column(nullable = false)
-    private Date createdAt;
+    protected Date createdAt;
 
     @Temporal(value = TemporalType.TIMESTAMP)
     @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
+    protected Date updatedAt;
 
 }
